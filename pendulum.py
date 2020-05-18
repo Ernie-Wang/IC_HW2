@@ -44,6 +44,12 @@ class pendulum():
     '''
     '''
     def sys_react(self, f):
+
+        total_mess = self.M + self.m
+
+        #####################
+        # Theta integration #
+        #####################
         original_v = self.theta[Type.VEL]
 
         # Update velocity
@@ -54,9 +60,23 @@ class pendulum():
 
         self.theta[Type.ACC] = 0
 
-        total_mess = self.M + self.m
+        ########################
+        # Position integration #
+        ########################
+        original_v = self.pos[Type.VEL]
 
-        # Theta acceleration
+        # Update velocity
+        self.pos[Type.VEL] = self.pos[Type.VEL] + self.pos[Type.ACC] * const.period_t
+
+        # Update position (Up+Low)*Height/2
+        self.pos[Type.POS] = self.pos[Type.POS] + (original_v + self.pos[Type.VEL]) * const.period_t / 2
+
+        self.pos[Type.ACC] = 0
+
+
+        ######################
+        # Theta acceleration #
+        ######################
         # Numerator
         self.theta[Type.ACC] = self.theta[Type.ACC] + total_mess * const.g * math.sin(self.theta[Type.POS])
 
@@ -67,6 +87,18 @@ class pendulum():
         # Denominator
 
         self.theta[Type.ACC] = self.theta[Type.ACC] / (4/3 * total_mess * self.L - self.m * self.L * math.pow( math.cos(self.theta[Type.POS]), 2))
+
+        #########################
+        # Position acceleration #
+        #########################
+        self.pos[Type.ACC] = self.pos[Type.ACC] + f
+
+        self.pos[Type.ACC] = self.pos[Type.ACC] + self.m * self.L * (math.pow(self.theta[Type.VEL], 2) * math.sin(self.theta[Type.POS]) - self.theta[Type.ACC] * math.cos(self.theta[Type.POS]) )
+
+        self.pos[Type.ACC] = self.pos[Type.ACC] / total_mess
+
+        self.pos[Type.ACC] = self.pos[Type.ACC] - self.mu_c * np.sign(self.pos[Type.VEL])
+
 
 
     '''
