@@ -32,16 +32,24 @@ class pendulum():
             where theta = 0 is the normal of the cart
             3 dimension indicates the theta, theta', theta''
         '''
-        self.theta = np.np.zeros(3)
+        self.theta = np.zeros(3)
 
         '''
             Position of the cart,
             where x = 0 is at the origin of x-axis
             3 dimension indicates the x, x', x''
         '''
-        self.pos = np.np.zeros(3)
+        self.pos = np.zeros(3)
     
     '''
+
+    '''
+    def initial(self, theta, pos):
+        self.theta = theta
+        self.pos = pos
+    '''
+    How system react when given force to chat
+    @param f - force given to cart
     '''
     def sys_react(self, f):
 
@@ -105,4 +113,12 @@ class pendulum():
     Applied a force to the inverted pendulum system
     '''
     def add_force(self, f):
-        pass
+        self.sys_react(f)
+
+if __name__ == "__main__":
+    sys = pendulum(M=const.M, m=const.m, L=const.L, mu_c=const.mu_c, mu_p=const.mu_p)
+    sys.initial(const.theta_init, const.pos_init)
+
+    sys.add_force(10)
+
+    print(const.FUZZY_TABLE[3][1])
