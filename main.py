@@ -54,6 +54,7 @@ def fuzzy_sim(c):
     force = 0                               # Force last calculate
     ad_mode = 1                             # Departure or approaching mode, Depart = 1, approach = -1
     sys.initial(const.theta_init, const.pos_init)
+    t = 0
     for t in range(const.TUNE_LIMIT):
 
         # Run model
@@ -94,14 +95,16 @@ def fuzzy_sim(c):
         # Terminate condition
         # theta out of limit
         if abs(sys.theta[0]) >= const.theta_limit:
+            t = const.TUNE_LIMIT
             break
         
         # x out of limit
         if abs(sys.pos[0]) >= const.x_limit:
+            t = const.TUNE_LIMIT
             break
 
-    fit = fitness(sys.theta, sys.pos, t)
-    
+    fit = fitness(sys.theta, error_x, t)
+
     return fit
 
 '''

@@ -5,13 +5,13 @@ import numpy as np
 #                       Time                       #
 ####################################################
 # Time base is in million second, which equals to 0.001 second
-CPU_CAL_T = 0.001               # How many times does it take for a computer to calculate one 
+CPU_CAL_T = 0.01               # How many times does it take for a computer to calculate one 
                             # generation in algorithm, in million second
 
-REACT_T = 20                # How long does it take for the force provider to react, in million second
+REACT_T = 1                # How long does it take for the force provider to react, in million second
 PERIOD_T = CPU_CAL_T        # The time period for system to update, which is the same when the force is updated
 
-TUNE_LIMIT = 1*60*1000      # The limit time for the simulation, minute * second per minute * millisecond per second
+TUNE_LIMIT = 1*60*100      # The limit time for the simulation, minute * second per minute * millisecond per second
 
 
 ####################################################
@@ -33,7 +33,7 @@ pos_init = np.array([0, 0, 0])
 ####################################################
 #                      PSO/ABC                     #
 ####################################################
-p_range = [-10, 10]           # Range of partition
+p_range = [0, 2]           # Range of partition
 gen = 50                    # Generation of one run in PSO
 num = 50
 
