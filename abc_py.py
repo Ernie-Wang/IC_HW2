@@ -2,7 +2,6 @@
 import numpy as np
 import random
 
-from benchmark import F8 as test
 
 end_thres = 1e-5
 class ABC():
@@ -67,63 +66,67 @@ class ABC():
         best_idx = np.argmin(self.fit)
         self.best = self.fit[best_idx]
 
+    def abc_iter(self, ite_idx):
+        print("Iteration: {ite}, best is {best}".format(ite=ite_idx+1, best=self.best))
+
+        # 1. Send employed bees to the new food source
+        for i in range(self.SN):
+            # Random select a source to change but noice that j!= i
+            j = random.choice([n for n in range(self.SN) if i != n])
+            tmp_pos = self.X[i] + np.random.uniform(-1,1,(self.dim)) * (self.X[i] - self.X[j])
+            tmp_pos = np.where(tmp_pos > self.u_bound, self.u_bound, tmp_pos)
+            tmp_pos = np.where(tmp_pos < self.l_bound, self.l_bound, tmp_pos)
+
+            # Calculate new position fitness
+            tmp_fit = self.func(tmp_pos)
+            # Greedy selection to select food source
+            if tmp_fit < self.fit[i]:
+                self.X[i] = tmp_pos
+                self.fit[i] = tmp_fit
+            else:
+                self.trial[i] = self.trial[i] + 1
+                
+
+        # Calculate Selection Probabilities
+        p_source = self.softmax(self.fit)
+        # 2. Send onlooker bees
+        for i in range(self.SN):
+            # Select Source Site by Roulette Wheel Selection)
+            food_source = np.random.choice(self.SN, 1, p=p_source)
+            # Random select a source to change but noice that j!= i
+            j = random.choice([n for n in range(self.SN) if i != n])
+            tmp_pos = self.X[i] + np.random.uniform(-1,1,(self.dim)) * (self.X[i] - self.X[j])
+            tmp_pos = np.where(tmp_pos > self.u_bound, self.u_bound, tmp_pos)
+            tmp_pos = np.where(tmp_pos < self.l_bound, self.l_bound, tmp_pos)
+            # Calculate new food source fitness
+            tmp_fit = self.func(tmp_pos)
+            # Greedy selection to select food source
+            if tmp_fit < self.fit[food_source]:
+                self.X[food_source] = tmp_pos
+                self.fit[food_source] = tmp_fit
+            else:
+                self.trial[food_source] = self.trial[food_source] + 1
+
+        # 3. Send scout
+        for i in range(self.SN):
+            if self.trial[i] >= self.limit:
+                self.trial[i] = 0
+                self.X[i] = np.random.uniform(self.l_bound,self.u_bound, (self.dim))
+                self.fit[i] = self.func(self.X[i])
+        
+        # 4. Update best solution
+        best_idx = np.argmin(self.fit)
+        if self.fit[best_idx] < self.best:
+            self.best = self.fit[best_idx]
+            self.bestx = self.X[best_idx]
+        
+        self.best_results[ite_idx] = self.best
+
+
     def abc_iterator(self):
         # Iteration
         for ite_idx in range(self.max_iter):
-            print("Iteration: {ite}, best is {best}".format(ite=ite_idx+1, best=self.best))
-
-            # 1. Send employed bees to the new food source
-            for i in range(self.SN):
-                # Random select a source to change but noice that j!= i
-                j = random.choice([n for n in range(self.SN) if i != n])
-                tmp_pos = self.X[i] + np.random.uniform(-1,1,(self.dim)) * (self.X[i] - self.X[j])
-                tmp_pos = np.where(tmp_pos > self.u_bound, self.u_bound, tmp_pos)
-                tmp_pos = np.where(tmp_pos < self.l_bound, self.l_bound, tmp_pos)
-
-                # Calculate new position fitness
-                tmp_fit = self.func(tmp_pos)
-                # Greedy selection to select food source
-                if tmp_fit < self.fit[i]:
-                    self.X[i] = tmp_pos
-                    self.fit[i] = tmp_fit
-                else:
-                    self.trial[i] = self.trial[i] + 1
-                    
-
-            # Calculate Selection Probabilities
-            p_source = self.softmax(self.fit)
-            # 2. Send onlooker bees
-            for i in range(self.SN):
-                # Select Source Site by Roulette Wheel Selection)
-                food_source = np.random.choice(self.SN, 1, p=p_source)
-                # Random select a source to change but noice that j!= i
-                j = random.choice([n for n in range(self.SN) if i != n])
-                tmp_pos = self.X[i] + np.random.uniform(-1,1,(self.dim)) * (self.X[i] - self.X[j])
-                tmp_pos = np.where(tmp_pos > self.u_bound, self.u_bound, tmp_pos)
-                tmp_pos = np.where(tmp_pos < self.l_bound, self.l_bound, tmp_pos)
-                # Calculate new food source fitness
-                tmp_fit = self.func(tmp_pos)
-                # Greedy selection to select food source
-                if tmp_fit < self.fit[food_source]:
-                    self.X[food_source] = tmp_pos
-                    self.fit[food_source] = tmp_fit
-                else:
-                    self.trial[food_source] = self.trial[food_source] + 1
-
-            # 3. Send scout
-            for i in range(self.SN):
-                if self.trial[i] >= self.limit:
-                    self.trial[i] = 0
-                    self.X[i] = np.random.uniform(self.l_bound,self.u_bound, (self.dim))
-                    self.fit[i] = self.func(self.X[i])
-            
-            # 4. Update best solution
-            best_idx = np.argmin(self.fit)
-            if self.fit[best_idx] < self.best:
-                self.best = self.fit[best_idx]
-                self.bestx = self.X[best_idx]
-            
-            self.best_results[ite_idx] = self.best
+            self.abc_iter(ite_idx)
 
             if self.triger(ite_idx):
                 break

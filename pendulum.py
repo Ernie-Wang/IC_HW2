@@ -14,7 +14,7 @@ globals().update(Type.__members__)
 '''
 Basic balence for the system, which set the cart position at x = 0
 '''
-def basic_balance():
+def basic_balance(t):
     return 0
 
 
@@ -45,8 +45,8 @@ class pendulum():
 
     '''
     def initial(self, theta, pos):
-        self.theta = theta
-        self.pos = pos
+        self.theta = theta.copy()
+        self.pos = pos.copy()
     '''
     How system react when given force to chat
     @param f - force given to cart
@@ -55,32 +55,8 @@ class pendulum():
 
         total_mess = self.M + self.m
 
-        #####################
-        # Theta integration #
-        #####################
-        original_v = self.theta[Type.VEL]
-
-        # Update velocity
-        self.theta[Type.VEL] = self.theta[Type.VEL] + self.theta[Type.ACC] * const.period_t
-
-        # Update position (Up+Low)*Height/2
-        self.theta[Type.POS] = self.theta[Type.POS] + (original_v + self.theta[Type.VEL]) * const.period_t / 2
-
         self.theta[Type.ACC] = 0
-
-        ########################
-        # Position integration #
-        ########################
-        original_v = self.pos[Type.VEL]
-
-        # Update velocity
-        self.pos[Type.VEL] = self.pos[Type.VEL] + self.pos[Type.ACC] * const.period_t
-
-        # Update position (Up+Low)*Height/2
-        self.pos[Type.POS] = self.pos[Type.POS] + (original_v + self.pos[Type.VEL]) * const.period_t / 2
-
         self.pos[Type.ACC] = 0
-
 
         ######################
         # Theta acceleration #
@@ -107,6 +83,29 @@ class pendulum():
 
         self.pos[Type.ACC] = self.pos[Type.ACC] - self.mu_c * np.sign(self.pos[Type.VEL])
 
+        #####################
+        # Theta integration #
+        #####################
+        original_v = self.theta[Type.VEL]
+
+        # Update velocity
+        self.theta[Type.VEL] = self.theta[Type.VEL] + self.theta[Type.ACC] * const.PERIOD_T
+
+        # Update position (Up+Low)*Height/2
+        self.theta[Type.POS] = self.theta[Type.POS] + (original_v + self.theta[Type.VEL]) * const.PERIOD_T / 2
+
+        ########################
+        # Position integration #
+        ########################
+        original_v = self.pos[Type.VEL]
+
+        # Update velocity
+        self.pos[Type.VEL] = self.pos[Type.VEL] + self.pos[Type.ACC] * const.PERIOD_T
+
+        # Update position (Up+Low)*Height/2
+        self.pos[Type.POS] = self.pos[Type.POS] + (original_v + self.pos[Type.VEL]) * const.PERIOD_T / 2
+
+
 
 
     '''
@@ -121,4 +120,4 @@ if __name__ == "__main__":
 
     sys.add_force(10)
 
-    print(const.FUZZY_TABLE[3][1])
+    # print(const.FUZZY_TABLE[3][1])
