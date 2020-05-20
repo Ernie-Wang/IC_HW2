@@ -2,7 +2,7 @@ import pendulum
 import const
 import numpy as np
 import abc_py
-
+from matplotlib import pyplot as plt
 #############################
 #           GLOBAL          #
 #############################
@@ -28,7 +28,7 @@ One iteration for the fuzzy loop
 '''
 def fitness(theta, x, t):
     angle = abs(theta[0])
-    shift = abs(x[0])
+    shift = abs(x)
     time = t / const.TUNE_LIMIT
     return W[0] * angle + W[1] * shift + W[2] * time
 
@@ -48,19 +48,24 @@ def fuzzification(v):
 '''
 Fuzzy simulation process for the certain coeficient c
 '''
-def fuzzy_sim(c):
+def fuzzy_sim(c, plot_en=False):
+    """
+    @param plot_en - plot record data or not
+        #note plot is blocking, you should close the figure manually and the program will continue
+    """
     s = 0                                   # Present s value
     last_s = 0                              # last s value, use to calculate s'
     force = 0                               # Force last calculate
     ad_mode = 1                             # Departure or approaching mode, Depart = 1, approach = -1
     sys.initial(const.theta_init, const.pos_init)
     t = 0
+    record_theta = []
     for t in range(const.TUNE_LIMIT):
 
         # Run model
         # print(force)
         sys.add_force(force)
-
+        record_theta.append(sys.theta[0])
         # Judge approach or departure mode
         error_x = sys.pos[0] - sys.signal(t)                # e_x
         sign_e_x = np.sign(error_x)                         # sgn(e_x)
@@ -105,17 +110,21 @@ def fuzzy_sim(c):
 
     fit = fitness(sys.theta, error_x, t)
 
+    if plot_en:
+        plt.plot(record_theta)
+        plt.show()
+
     return fit
 
 '''
 Simulation for the pendulum system
 '''
 def simulate(C):
-    fuzzy_sim(C)
+    return fuzzy_sim(C, True)
 
 
 if __name__ == "__main__":
-    # Create inverted pendulum system
+    # # Create inverted pendulum system
     sys = pendulum.pendulum(M=const.M, m=const.m, L=const.L, mu_c=const.mu_c, mu_p=const.mu_p)
     sys.initial(const.theta_init, const.pos_init)
 
@@ -132,4 +141,4 @@ if __name__ == "__main__":
     C = algo.bestx.copy()
 
     # Simulate the result
-    simulate(C)
+    fit = simulate(C)
