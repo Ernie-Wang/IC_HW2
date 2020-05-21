@@ -27,7 +27,7 @@ desire_x = 0
 One iteration for the fuzzy loop
 '''
 def fitness(theta, x, t):
-    angle = abs(theta[0])
+    angle = abs(theta)
     shift = abs(x)
     time = t / const.TUNE_LIMIT
     return W[0] * angle + W[1] * shift + W[2] * time
@@ -108,7 +108,27 @@ def fuzzy_sim(c, plot_en=False):
             t = const.TUNE_LIMIT
             break
 
-    fit = fitness(sys.theta, error_x, t)
+        # Theta is stable in a range of time
+        len_record = len(record_theta)
+        avg_theta = 0
+        if len_record > const.end_sample:
+            sample_data = record_theta[len_record - const.end_sample:len_record].copy()
+            sample_data = np.abs(sample_data)
+            avg_theta = np.average(sample_data)
+            if avg_theta < const.stable_theta:
+                break
+
+    len_record = len(record_theta)
+    sample_data = 0
+    if len_record >= const.end_sample:
+        sample_data = record_theta[len_record - const.end_sample:len_record].copy()
+    else:
+        sample_data = record_theta[:len_record].copy()
+
+    sample_data = np.abs(sample_data)
+    avg_theta = np.average(sample_data)
+
+    fit = fitness(avg_theta, error_x, t)
 
     if plot_en:
         plt.plot(record_theta)

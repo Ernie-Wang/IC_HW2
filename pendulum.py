@@ -100,7 +100,9 @@ class pendulum():
         original_v = self.pos[Type.VEL]
 
         # Update velocity
-        self.pos[Type.VEL] = self.pos[Type.VEL] + self.pos[Type.ACC] * const.PERIOD_T
+        test = self.pos[Type.ACC] * const.PERIOD_T
+        self.pos[Type.VEL] = self.pos[Type.VEL] + test
+        # self.pos[Type.VEL] = self.pos[Type.VEL] + self.pos[Type.ACC] * const.PERIOD_T
 
         # Update position (Up+Low)*Height/2
         self.pos[Type.POS] = self.pos[Type.POS] + (original_v + self.pos[Type.VEL]) * const.PERIOD_T / 2

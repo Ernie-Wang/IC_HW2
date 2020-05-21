@@ -5,7 +5,7 @@ import numpy as np
 #                       Time                       #
 ####################################################
 # Time base is in million second, which equals to 0.001 second
-CPU_CAL_T = 0.01                                # How many times does it take for a computer to calculate one 
+CPU_CAL_T = 0.001                                # How many times does it take for a computer to calculate one 
                                                 # generation in algorithm, in million second
 
 REACT_T = 1                                     # How long does it take for the force provider to react, in million second
@@ -25,19 +25,20 @@ mu_p = 0.01
 g = 9.8                     # The gravity constant for the system
 force_limit = 80            # Limit of the force
 theta_limit = math.pi/3     # Limit of the theta
+stable_theta = math.pi / 36 # definition of stable theta, set to 5 degree
 x_limit = 200               # Limit of x 
 theta_init = np.array([math.pi/6, 0, 0])
-pos_init = np.array([0, 0, 0])
+pos_init = np.array([0.0, 0.0, 0.0])
 
 end_thres = 1e-5            # Terminate threshold for the abc to terminate
-end_sample = 20             # How many run we samples to judge the termination
+end_sample = 50             # How many run we samples to judge the termination
 max_iter = 1000             # Maximum iteration for abc
 
 
 ####################################################
 #                      PSO/ABC                     #
 ####################################################
-p_range = [0, 2]           # Range of partition
+p_range = [-10, 10]           # Range of partition
 gen = 50                    # Generation of one run in PSO
 num = 50
 
