@@ -129,7 +129,7 @@ if __name__ == "__main__":
     sys.initial(const.theta_init, const.pos_init)
 
     # Initial ABC algorithm
-    algo = abc_py.ABC (dim=dim, num=const.num, max_iter=const.TUNE_LIMIT, u_bound=const.p_range[1], l_bound=const.p_range[0], func=fuzzy_sim, end_thres=const.theta_limit)
+    algo = abc_py.ABC (dim=dim, num=const.num, max_iter=const.max_iter, u_bound=const.p_range[1], l_bound=const.p_range[0], func=fuzzy_sim, end_thres=const.end_thres, end_sample=const.end_sample)
     
     # Initial particles
     algo.abc_init()

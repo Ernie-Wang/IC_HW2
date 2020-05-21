@@ -5,13 +5,13 @@ import numpy as np
 #                       Time                       #
 ####################################################
 # Time base is in million second, which equals to 0.001 second
-CPU_CAL_T = 0.01               # How many times does it take for a computer to calculate one 
-                            # generation in algorithm, in million second
+CPU_CAL_T = 0.01                                # How many times does it take for a computer to calculate one 
+                                                # generation in algorithm, in million second
 
-REACT_T = 1                # How long does it take for the force provider to react, in million second
-PERIOD_T = CPU_CAL_T        # The time period for system to update, which is the same when the force is updated
-
-TUNE_LIMIT = 1*60*100      # The limit time for the simulation, minute * second per minute * millisecond per second
+REACT_T = 1                                     # How long does it take for the force provider to react, in million second
+PERIOD_T = CPU_CAL_T                            # The time period for system to update, which is the same when the force is updated
+MIN_LIMIT = 1.5                                 # How many minutes to run
+TUNE_LIMIT = MIN_LIMIT * 60 / CPU_CAL_T         # The limit time for the simulation, minute * second per minute * millisecond per second
 
 
 ####################################################
@@ -28,6 +28,10 @@ theta_limit = math.pi/3     # Limit of the theta
 x_limit = 200               # Limit of x 
 theta_init = np.array([math.pi/6, 0, 0])
 pos_init = np.array([0, 0, 0])
+
+end_thres = 1e-5            # Terminate threshold for the abc to terminate
+end_sample = 20             # How many run we samples to judge the termination
+max_iter = 1000             # Maximum iteration for abc
 
 
 ####################################################
