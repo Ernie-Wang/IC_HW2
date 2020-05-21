@@ -11,7 +11,7 @@ CPU_CAL_T = 0.01                                # How many times does it take fo
 REACT_T = 1                                     # How long does it take for the force provider to react, in million second
 PERIOD_T = CPU_CAL_T                            # The time period for system to update, which is the same when the force is updated
 MIN_LIMIT = 1.5                                 # How many minutes to run
-TUNE_LIMIT = MIN_LIMIT * 60 / CPU_CAL_T         # The limit time for the simulation, minute * second per minute * millisecond per second
+TUNE_LIMIT = int(MIN_LIMIT * 60 / CPU_CAL_T)         # The limit time for the simulation, minute * second per minute * millisecond per second
 
 
 ####################################################
