@@ -28,7 +28,7 @@ theta_limit = math.pi/3     # Limit of the theta
 stable_theta = math.pi / 36 # definition of stable theta, set to 5 degree
 x_limit = 200               # Limit of x 
 theta_init = np.array([math.pi/6, 0, 0])
-pos_init = np.array([0.0, 0.0, 0.0])
+pos_init = np.array([0.00001, 0.0, 0.0])
 
 end_thres = 1e-5            # Terminate threshold for the abc to terminate
 end_sample = 50             # How many run we samples to judge the termination
@@ -38,7 +38,7 @@ max_iter = 1000             # Maximum iteration for abc
 ####################################################
 #                      PSO/ABC                     #
 ####################################################
-p_range = [-10, 10]           # Range of partition
+p_range = [-5, 5]           # Range of partition
 gen = 50                    # Generation of one run in PSO
 num = 50
 

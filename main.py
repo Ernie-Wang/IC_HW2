@@ -15,7 +15,7 @@ from matplotlib import pyplot as plt
 C = [1, 1, 1, 1, 1, 1]
 
 # Weight for calculating fitness function
-W = [10, 9, 2]
+W = [100, 2, 2]
 
 # Dimension of the particle
 dim = 6
@@ -42,7 +42,8 @@ def fuzzification(v):
     elif shift_v <= 0:
         return 0
     else:
-        return int(round(shift_v))
+        return shift_v
+        # return int(round(shift_v))
 
 
 '''
@@ -62,10 +63,11 @@ def fuzzy_sim(c, plot_en=False):
     record_theta = []
     for t in range(const.TUNE_LIMIT):
 
-        # Run model
-        # print(force)
-        sys.add_force(force)
-        record_theta.append(sys.theta[0])
+        # # Run model
+        # # print(force)
+        # sys.add_force(force)
+        # record_theta.append(sys.theta[0])
+
         # Judge approach or departure mode
         error_x = sys.pos[0] - sys.signal(t)                # e_x
         sign_e_x = np.sign(error_x)                         # sgn(e_x)
@@ -92,10 +94,11 @@ def fuzzy_sim(c, plot_en=False):
             # Catagory this status falled into 
             s_cata = fuzzification(weighted_s)              # s value catagorize
             s_prom_cata = fuzzification(weighted_s_prom)    # s' catagorize
-            cata = const.FUZZY_TABLE[s_cata][s_prom_cata]
+            cata = const.FUZZY_TABLE[int(round(s_cata))][int(round(s_prom_cata))]
+            norm_force = cata + (s_cata - round(s_cata) + s_prom_cata - round(s_prom_cata)) * 0.5 - const.ZERO
 
             # calculate the force to send, shift back to zero = 0
-            force = ( cata - const.ZERO ) / const.SCALE * const.force_limit
+            force = norm_force / (const.SCALE - const.ZERO) * const.force_limit
 
         # Terminate condition
         # theta out of limit
@@ -117,6 +120,11 @@ def fuzzy_sim(c, plot_en=False):
             avg_theta = np.average(sample_data)
             if avg_theta < const.stable_theta:
                 break
+        
+        # Run model
+        # print(force)
+        sys.add_force(force)
+        record_theta.append(sys.theta[0])
 
     len_record = len(record_theta)
     sample_data = 0
@@ -147,6 +155,7 @@ if __name__ == "__main__":
     # # Create inverted pendulum system
     sys = pendulum.pendulum(M=const.M, m=const.m, L=const.L, mu_c=const.mu_c, mu_p=const.mu_p)
     sys.initial(const.theta_init, const.pos_init)
+    #fit = simulate([1, 0.3, 0.04, 0.02, 1, 0.02])
 
     # Initial ABC algorithm
     algo = abc_py.ABC (dim=dim, num=const.num, max_iter=const.max_iter, u_bound=const.p_range[1], l_bound=const.p_range[0], func=fuzzy_sim, end_thres=const.end_thres, end_sample=const.end_sample)
