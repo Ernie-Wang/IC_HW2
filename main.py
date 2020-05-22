@@ -114,8 +114,8 @@ def fuzzy_sim(c, plot_en=False):
         # Theta is stable in a range of time
         len_record = len(record_theta)
         avg_theta = 0
-        if len_record > const.end_sample:
-            sample_data = record_theta[len_record - const.end_sample:len_record].copy()
+        if len_record > const.window:
+            sample_data = record_theta[len_record - const.window:len_record].copy()
             sample_data = np.abs(sample_data)
             avg_theta = np.average(sample_data)
             if avg_theta < const.stable_theta:
@@ -128,8 +128,8 @@ def fuzzy_sim(c, plot_en=False):
 
     len_record = len(record_theta)
     sample_data = 0
-    if len_record >= const.end_sample:
-        sample_data = record_theta[len_record - const.end_sample:len_record].copy()
+    if len_record >= const.window:
+        sample_data = record_theta[len_record - const.window:len_record].copy()
     else:
         sample_data = record_theta[:len_record].copy()
 
