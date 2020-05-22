@@ -68,7 +68,7 @@ class ABC():
         self.best = self.fit[best_idx]
 
     def abc_iter(self, ite_idx):
-        print("Iteration: {ite}, best is {best}".format(ite=ite_idx+1, best=self.best))
+        print("Iteration: {ite}, best is {best:6.3f}, best C = {C_best}".format(ite=ite_idx+1, best=self.best, C_best=self.bestx))
 
         # 1. Send employed bees to the new food source
         for i in range(self.SN):

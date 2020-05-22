@@ -171,3 +171,6 @@ if __name__ == "__main__":
 
     # Simulate the result
     fit = simulate(C)
+    plt.plot(algo.best_results)
+    plt.show()
+    i = 0
