@@ -177,7 +177,7 @@ if __name__ == "__main__":
     # Create inverted pendulum system, signal set square function
     # sys = pendulum.pendulum(M=const.M, m=const.m, L=const.L, mu_c=const.mu_c, mu_p=const.mu_p,signal=signal_sqrt)
     sys.initial(const.theta_init, const.pos_init)
-    # fit = simulate([9.92737241, 4.43222985, 0.22307639,  0.36513742, 10, -10.])
+    # fit = simulate([-9.99143315, -2.6104214, -0.3391081, -1.2249787, -10, 8.56482874])
 
     # Initial ABC algorithm
     algo = abc_py.ABC (dim=dim, num=const.num, max_iter=const.max_iter, u_bound=const.p_range[1], l_bound=const.p_range[0], func=fuzzy_sim, end_thres=const.end_thres, end_sample=const.end_sample)
