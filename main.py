@@ -100,26 +100,27 @@ def fuzzy_sim(c, plot_en=False):
             # calculate the force to send, shift back to zero = 0
             force = norm_force / (const.SCALE - const.ZERO) * const.force_limit
 
-        # Terminate condition
-        # theta out of limit
-        if abs(sys.theta[0]) >= const.theta_limit:
-            t = const.TUNE_LIMIT
-            break
-        
-        # x out of limit
-        if abs(sys.pos[0]) >= const.x_limit:
-            t = const.TUNE_LIMIT
-            break
-
-        # Theta is stable in a range of time
-        len_record = len(record_theta)
-        avg_theta = 0
-        if len_record > const.window:
-            sample_data = record_theta[len_record - const.window:len_record].copy()
-            sample_data = np.abs(sample_data)
-            avg_theta = np.average(sample_data)
-            if avg_theta < const.stable_theta:
+        # Terminate condition, if we are training, no ploting
+        if not plot_en:
+            # theta out of limit
+            if abs(sys.theta[0]) >= const.theta_limit:
+                t = const.TUNE_LIMIT
                 break
+            
+            # x out of limit
+            if abs(sys.pos[0]) >= const.x_limit:
+                t = const.TUNE_LIMIT
+                break
+
+            # Theta is stable in a range of time
+            len_record = len(record_theta)
+            avg_theta = 0
+            if len_record > const.window:
+                sample_data = record_theta[len_record - const.window:len_record].copy()
+                sample_data = np.abs(sample_data)
+                avg_theta = np.average(sample_data)
+                if avg_theta < const.stable_theta:
+                    break
         
         # Run model
         # print(force)
@@ -150,12 +151,33 @@ Simulation for the pendulum system
 def simulate(C):
     return fuzzy_sim(C, True)
 
+'''
+Define square signal input
+'''
+triger = False
+def signal_sqrt(t):
+    global triger
+    if ((t+1) % (20/const.PERIOD_T)) == 0:
+        triger = not triger
+    
+    if triger:
+        return 0.5
+    return 0
 
+'''
+Set constant position
+'''
+def signal_const(t):
+    return -10
 if __name__ == "__main__":
-    # # Create inverted pendulum system
-    sys = pendulum.pendulum(M=const.M, m=const.m, L=const.L, mu_c=const.mu_c, mu_p=const.mu_p)
+    # Create inverted pendulum system, signal set to origin point
+    # sys = pendulum.pendulum(M=const.M, m=const.m, L=const.L, mu_c=const.mu_c, mu_p=const.mu_p)
+    # Create inverted pendulum system, signal set to constant desire position
+    sys = pendulum.pendulum(M=const.M, m=const.m, L=const.L, mu_c=const.mu_c, mu_p=const.mu_p,signal=signal_const)
+    # Create inverted pendulum system, signal set square function
+    # sys = pendulum.pendulum(M=const.M, m=const.m, L=const.L, mu_c=const.mu_c, mu_p=const.mu_p,signal=signal_sqrt)
     sys.initial(const.theta_init, const.pos_init)
-    #fit = simulate([1, 0.3, 0.04, 0.02, 1, 0.02])
+    # fit = simulate([9.92737241, 4.43222985, 0.22307639,  0.36513742, 10, -10.])
 
     # Initial ABC algorithm
     algo = abc_py.ABC (dim=dim, num=const.num, max_iter=const.max_iter, u_bound=const.p_range[1], l_bound=const.p_range[0], func=fuzzy_sim, end_thres=const.end_thres, end_sample=const.end_sample)
