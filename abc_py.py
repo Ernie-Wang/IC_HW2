@@ -6,17 +6,18 @@ import random
 end_thres = 1e-5
 class ABC():
 
-    def __init__(self, dim, num, max_iter, u_bound, l_bound, func, end_thres, end_sample):
+    def __init__(self, dim, num, max_iter, u_bound, l_bound, func, end_thres, end_sample, fit_max):
         """ Initialize ABC object """
         self.SN = num                                 # Number of onlooker bees / enployed bees
         self.dim = dim                                # Searching dimension
-        self.limit = 0.6*dim*num                      # Searching limit
+        self.limit = 0.2*num                          # Searching limit
         self.max_iter = max_iter                      # Maximum iteration
         self.u_bound = u_bound                        # Upper bound
         self.l_bound = l_bound                        # Lower bound
         self.func = func                              # Benchmark function
         self.end_thres = end_thres                    # Terminate threshold
         self.end_sample = end_sample                  # End sample number
+        self.fit_max = fit_max                        # Maximum fitness value
 
         self.X = np.zeros((self.SN, self.dim))        # Food source position
         self.fit = np.zeros((self.SN))                # Food source fitness
@@ -38,7 +39,8 @@ class ABC():
 
     def triger(self, iteration):
         upper = lower = self.best_results[iteration]
-        if iteration > self.end_sample:
+        # if  iteration > self.end_sample:
+        if self.best_results[iteration] < self.fit_max and iteration > self.end_sample:
             for i in range(self.end_sample):
                 if upper < self.best_results[iteration - i]:
                     upper = self.best_results[iteration - i]
@@ -119,7 +121,7 @@ class ABC():
         best_idx = np.argmin(self.fit)
         if self.fit[best_idx] < self.best:
             self.best = self.fit[best_idx]
-            self.bestx = self.X[best_idx]
+            self.bestx = self.X[best_idx].copy()
         
         self.best_results[ite_idx] = self.best
 

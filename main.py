@@ -61,6 +61,9 @@ def fuzzy_sim(c, plot_en=False):
     sys.initial(const.theta_init, const.pos_init)
     t = 0
     record_theta = []
+    desire_theta = []
+    record_x = []
+    desire_x = []
     for t in range(const.TUNE_LIMIT):
 
         # # Run model
@@ -69,7 +72,8 @@ def fuzzy_sim(c, plot_en=False):
         # record_theta.append(sys.theta[0])
 
         # Judge approach or departure mode
-        error_x = sys.pos[0] - sys.signal(t)                # e_x
+        x_d = sys.signal(t)
+        error_x = sys.pos[0] - x_d                          # e_x
         sign_e_x = np.sign(error_x)                         # sgn(e_x)
         sign_x_prom = np.sign(sys.pos[1])                   # sgn(x')
         sign_theta = np.sign(sys.theta[0])                  # sgn(theta)
@@ -108,7 +112,7 @@ def fuzzy_sim(c, plot_en=False):
                 break
             
             # x out of limit
-            if abs(sys.pos[0]) >= const.x_limit:
+            if abs(error_x) >= const.x_limit:
                 t = const.TUNE_LIMIT
                 break
 
@@ -126,6 +130,8 @@ def fuzzy_sim(c, plot_en=False):
         # print(force)
         sys.add_force(force)
         record_theta.append(sys.theta[0])
+        record_x.append(sys.pos[0])
+        desire_x.append(x_d)
 
     len_record = len(record_theta)
     sample_data = 0
@@ -141,6 +147,9 @@ def fuzzy_sim(c, plot_en=False):
 
     if plot_en:
         plt.plot(record_theta)
+        plt.show()
+        plt.plot(record_x)
+        plt.plot(desire_x)
         plt.show()
 
     return fit
@@ -177,10 +186,10 @@ if __name__ == "__main__":
     # Create inverted pendulum system, signal set square function
     # sys = pendulum.pendulum(M=const.M, m=const.m, L=const.L, mu_c=const.mu_c, mu_p=const.mu_p,signal=signal_sqrt)
     sys.initial(const.theta_init, const.pos_init)
-    # fit = simulate([-9.99143315, -2.6104214, -0.3391081, -1.2249787, -10, 8.56482874])
+    # fit = simulate([ -9.99143315, -2.6104214, -0.3391081, -1.2249787, -10, 8.56482874])
 
     # Initial ABC algorithm
-    algo = abc_py.ABC (dim=dim, num=const.num, max_iter=const.max_iter, u_bound=const.p_range[1], l_bound=const.p_range[0], func=fuzzy_sim, end_thres=const.end_thres, end_sample=const.end_sample)
+    algo = abc_py.ABC (dim=dim, num=const.num, max_iter=const.max_iter, u_bound=const.p_range[1], l_bound=const.p_range[0], func=fuzzy_sim, end_thres=const.end_thres, end_sample=const.end_sample, fit_max=const.fitness_max)
     
     # Initial particles
     algo.abc_init()

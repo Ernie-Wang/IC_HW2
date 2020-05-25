@@ -30,6 +30,7 @@ x_limit = 200               # Limit of x
 theta_init = np.array([math.pi/6, 0, 0])
 pos_init = np.array([0.00001, 0.0, 0.0])
 
+fitness_max = 2.05          # Maximum fitness value for the lgorithm to terminate
 end_thres = 1e-5            # Terminate threshold for the abc to terminate
 end_sample = 30             # How many run we samples to judge the termination for algorithm
 max_iter = 1000             # Maximum iteration for abc
@@ -39,9 +40,9 @@ window = int(20 / PERIOD_T)      # Sample window for the theta
 ####################################################
 #                      PSO/ABC                     #
 ####################################################
-p_range = [-10, 10]           # Range of partition
-gen = 50                    # Generation of one run in PSO
-num = 50
+p_range = [-10, 10]             # Range of partition
+gen = 50                        # Generation of one run in PSO
+num = 50                        # Generation of one run in PSO
 
 
 
