@@ -1,0 +1,83 @@
+Last login: Wed May 27 08:45:26 on ttys002
+ cd 'undefined'; env 'DEBUGPY_LAUNCHER_PORT=57951' '/usr/local/bin/python3' '/Users/wangchangwen/.vscode/extensions/ms-python.python-2020.3.71659/pythonFiles/lib/python/debugpy/no_wheels/debugpy/launcher' '/Users/wangchangwen/Git/IC_HW2/main.py'
+
+The default interactive shell is now zsh.
+To update your account to use zsh, please run `chsh -s /bin/zsh`.
+For more details, please visit https://support.apple.com/kb/HT208050.
+wangchangwen@wangchangwende-MacBook-Pro-5022:~
+$  cd 'undefined'; env 'DEBUGPY_LAUNCHER_PORT=57951' '/usr/local/bin/python3' '/Users/wangchangwen/.vscode/extensions/ms-python.python-2020.3.71659/pythonFiles/lib/python/debugpy/no_wheels/debugpy/launcher' '/Users/wangchangwen/Git/IC_HW2/main.py'
+-bash: cd: undefined: No such file or directory
+wangchangwen@wangchangwende-MacBook-Pro-5022:~
+$  cd 'undefined'; env 'DEBUGPY_LAUNCHER_PORT=58014' '/usr/local/bin/python3' '/Users/wangchangwen/.vscode/extensions/ms-python.python-2020.3.71659/pythonFiles/lib/python/debugpy/no_wheels/debugpy/launcher' '/Users/wangchangwen/Git/IC_HW2/main.py'
+-bash: cd: undefined: No such file or directory
+Iteration: 1, best is 119.915, best C = [-9.20336238 -7.4834672  -1.33569339 -3.51815284 -9.65028974 -0.88891241]
+Iteration: 2, best is 31.779, best C = [-19.00761563  -5.75426632 -11.44426547 -10.53578593  -9.08955773
+   1.5919966 ]
+Iteration: 3, best is 30.401, best C = [-13.29272469  -6.74865447 -12.81146769 -19.0471468   -6.96777774
+  -0.10066778]
+Iteration: 4, best is 29.241, best C = [-18.94832181  -4.437954   -12.65335965 -13.80429247  -5.1382651
+  -0.30603732]
+Iteration: 5, best is 29.241, best C = [-18.94832181  -4.437954   -12.65335965 -13.80429247  -5.1382651
+  -0.30603732]
+Iteration: 6, best is 29.241, best C = [-18.94832181  -4.437954   -12.65335965 -13.80429247  -5.1382651
+  -0.30603732]
+Iteration: 7, best is 28.991, best C = [-20.          -4.78356515 -13.40874888 -14.60246557  -3.77657673
+  -0.40075034]
+Iteration: 8, best is 28.948, best C = [-20.          -5.52814763 -13.2575945  -17.05679471  -5.06011915
+  -0.16992842]
+Iteration: 9, best is 28.598, best C = [-20.          -5.69301225 -13.02464782 -20.          -0.65480809
+  -0.20112272]
+Iteration: 10, best is 28.279, best C = [-20.          -5.20807024 -13.52295473 -20.          -0.66108408
+  -0.15063747]
+Iteration: 11, best is 28.279, best C = [-20.          -5.20807024 -13.52295473 -20.          -0.66108408
+  -0.15063747]
+Iteration: 12, best is 28.174, best C = [ -8.42350546  -0.7802648   -4.99479613 -20.          -0.81833364
+   2.44010683]
+Iteration: 13, best is 28.174, best C = [ -8.42350546  -0.7802648   -4.99479613 -20.          -0.81833364
+   2.44010683]
+Iteration: 14, best is 18.226, best C = [-20.           0.71433662  -7.50088132 -16.53626202  -0.63823777
+   1.16608658]
+Iteration: 15, best is 18.226, best C = [-20.           0.71433662  -7.50088132 -16.53626202  -0.63823777
+   1.16608658]
+Iteration: 16, best is 18.226, best C = [-20.           0.71433662  -7.50088132 -16.53626202  -0.63823777
+   1.16608658]
+Iteration: 17, best is 18.226, best C = [-20.           0.71433662  -7.50088132 -16.53626202  -0.63823777
+   1.16608658]
+Iteration: 18, best is 17.925, best C = [-19.30652468   0.6296489   -4.26665524 -20.          -4.85359378
+   1.19710836]
+Iteration: 19, best is 17.341, best C = [-20.           0.82777169  -4.04592624 -20.          -6.14875195
+   3.25082623]
+Iteration: 20, best is 15.526, best C = [-20.           0.7506716   -5.10856212 -20.          -6.74916296
+   5.29569059]
+Iteration: 21, best is 15.526, best C = [-20.           0.7506716   -5.10856212 -20.          -6.74916296
+   5.29569059]
+Iteration: 22, best is 13.729, best C = [-20.           0.68328769  -4.82176233 -20.          -6.78676454
+   3.68188079]
+Iteration: 23, best is 13.258, best C = [-20.           0.61517971  -4.30888178 -20.          -6.83165273
+   1.84829574]
+Iteration: 24, best is 13.258, best C = [-20.           0.61517971  -4.30888178 -20.          -6.83165273
+   1.84829574]
+Iteration: 25, best is 13.258, best C = [-20.           0.61517971  -4.30888178 -20.          -6.83165273
+   1.84829574]
+Iteration: 26, best is 12.069, best C = [-20.           0.63624788  -4.14842746 -20.          -6.82117046
+   2.88788532]
+Iteration: 27, best is 12.069, best C = [-20.           0.63624788  -4.14842746 -20.          -6.82117046
+   2.88788532]
+Iteration: 28, best is 11.996, best C = [-20.           0.6258438   -4.17670546 -20.          -6.81712365
+   2.46124704]
+Iteration: 29, best is 11.996, best C = [-20.           0.6258438   -4.17670546 -20.          -6.81712365
+   2.46124704]
+wangchangwen@wangchangwende-MacBook-Pro-5022:~
+$  cd 'undefined'; env 'DEBUGPY_LAUNCHER_PORT=55570' '/usr/local/bin/python3' '/Users/wangchangwen/.vscode/extensions/ms-python.python-2020.3.71659/pythonFiles/lib/python/debugpy/no_wheels/debugpy/launcher' '/Users/wangchangwen/Git/IC_HW2/main.py'
+-bash: cd: undefined: No such file or directory
+wangchangwen@wangchangwende-MacBook-Pro-5022:~
+$  cd 'undefined'; env 'DEBUGPY_LAUNCHER_PORT=55811' '/usr/local/bin/python3' '/Users/wangchangwen/.vscode/extensions/ms-python.python-2020.3.71659/pythonFiles/lib/python/debugpy/no_wheels/debugpy/launcher' '/Users/wangchangwen/Git/IC_HW2/main.py'
+-bash: cd: undefined: No such file or directory
+wangchangwen@wangchangwende-MacBook-Pro-5022:~
+$  cd 'undefined'; env 'DEBUGPY_LAUNCHER_PORT=55920' '/usr/local/bin/python3' '/Users/wangchangwen/.vscode/extensions/ms-python.python-2020.3.71659/pythonFiles/lib/python/debugpy/no_wheels/debugpy/launcher' '/Users/wangchangwen/Git/IC_HW2/main.py'
+-bash: cd: undefined: No such file or directory
+wangchangwen@wangchangwende-MacBook-Pro-5022:~
+$  cd 'undefined'; env 'DEBUGPY_LAUNCHER_PORT=55995' '/usr/local/bin/python3' '/Users/wangchangwen/.vscode/extensions/ms-python.python-2020.3.71659/pythonFiles/lib/python/debugpy/no_wheels/debugpy/launcher' '/Users/wangchangwen/Git/IC_HW2/main.py'
+-bash: cd: undefined: No such file or directory
+wangchangwen@wangchangwende-MacBook-Pro-5022:~
+$ 

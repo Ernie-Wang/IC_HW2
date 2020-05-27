@@ -2,6 +2,7 @@ import pendulum
 import const
 import numpy as np
 import abc_py
+import pso_e
 from matplotlib import pyplot as plt
 #############################
 #           GLOBAL          #
@@ -15,7 +16,7 @@ from matplotlib import pyplot as plt
 C = [1, 1, 1, 1, 1, 1]
 
 # Weight for calculating fitness function
-W = [100, 2, 2]
+W = [88, 10, 2]
 
 # Dimension of the particle
 dim = 6
@@ -64,6 +65,7 @@ def fuzzy_sim(c, plot_en=False):
     desire_theta = []
     record_x = []
     desire_x = []
+    record_x_e = []
     for t in range(const.TUNE_LIMIT):
 
         # # Run model
@@ -87,7 +89,7 @@ def fuzzy_sim(c, plot_en=False):
 
         # Calculate sliding surface value  
         last_s = s
-        s = c[0] * sys.theta[0] + c[1] * sys.theta[1] + ad_mode * (c[2] * error_x + c[3] * sys.pos[1])
+        s = const.theta_scale * (c[0] * sys.theta[0] + c[1] * sys.theta[1]) + ad_mode * (c[2] * const.x_scale * error_x + c[3] * sys.pos[1])
 
         # Judge if reach the force threshold
         if t % const.REACT_T == 0:
@@ -120,7 +122,7 @@ def fuzzy_sim(c, plot_en=False):
             len_record = len(record_theta)
             avg_theta = 0
             if len_record > const.window:
-                sample_data = record_theta[len_record - const.window:len_record].copy()
+                sample_data = record_theta[len_record - int(const.window / 2):len_record].copy()
                 sample_data = np.abs(sample_data)
                 avg_theta = np.average(sample_data)
                 if avg_theta < const.stable_theta:
@@ -132,18 +134,24 @@ def fuzzy_sim(c, plot_en=False):
         record_theta.append(sys.theta[0])
         record_x.append(sys.pos[0])
         desire_x.append(x_d)
+        record_x_e.append(error_x)
 
     len_record = len(record_theta)
     sample_data = 0
+    sample_x_e = 0
     if len_record >= const.window:
         sample_data = record_theta[len_record - const.window:len_record].copy()
+        sample_x_e = record_x_e[len_record - const.window:len_record].copy()
     else:
         sample_data = record_theta[:len_record].copy()
+        sample_x_e = record_x_e[:len_record].copy()
 
     sample_data = np.abs(sample_data)
+    sample_x_e = np.abs(sample_x_e)
     avg_theta = np.average(sample_data)
+    avg_x_e = np.average(sample_x_e)
 
-    fit = fitness(avg_theta, error_x, t)
+    fit = fitness(avg_theta, avg_x_e, t)
 
     if plot_en:
         plt.plot(record_theta)
@@ -185,20 +193,35 @@ if __name__ == "__main__":
     sys = pendulum.pendulum(M=const.M, m=const.m, L=const.L, mu_c=const.mu_c, mu_p=const.mu_p,signal=signal_const)
     # Create inverted pendulum system, signal set square function
     # sys = pendulum.pendulum(M=const.M, m=const.m, L=const.L, mu_c=const.mu_c, mu_p=const.mu_p,signal=signal_sqrt)
-    sys.initial(const.theta_init, const.pos_init)
-    # fit = simulate([ -9.99143315, -2.6104214, -0.3391081, -1.2249787, -10, 8.56482874])
 
-    # Initial ABC algorithm
-    algo = abc_py.ABC (dim=dim, num=const.num, max_iter=const.max_iter, u_bound=const.p_range[1], l_bound=const.p_range[0], func=fuzzy_sim, end_thres=const.end_thres, end_sample=const.end_sample, fit_max=const.fitness_max)
-    
+    sys.initial(const.theta_init, const.pos_init)
+    # fit = simulate([-20, -4.78356515, -13.40874888, -14.60246557,  -3.77657673, -0.40075034])
+    # fit = simulate([-20, 0.6258438, -4.17670546, -20, -6.81712365, 2.46124704])
+
+    # # Initial ABC algorithm
+    # algo = abc_py.ABC (dim=dim, num=const.num, max_iter=const.max_iter, u_bound=const.p_range[1], l_bound=const.p_range[0], func=fuzzy_sim, end_thres=const.end_thres, end_sample=const.end_sample, fit_max=const.fitness_max)
+
+    # # Initial particles
+    # algo.abc_init()
+
+    # # Run iteration
+    # algo.abc_iterator()
+
+    # # Extract best solution
+    # C = algo.bestx.copy()
+
+
+    # Initial PSO algorithm
+    algo = pso_e.PSO (dim=dim, num=const.num, max_iter=const.max_iter, u_bound=const.p_range[1], l_bound=const.p_range[0], func=fuzzy_sim, end_thres=const.end_thres, end_sample=const.end_sample, fit_max=const.fitness_max)
+
     # Initial particles
-    algo.abc_init()
+    algo.pso_init()
 
     # Run iteration
-    algo.abc_iterator()
+    algo.pso_iterator()
 
     # Extract best solution
-    C = algo.bestx.copy()
+    C = algo.gbest.copy()
 
     # Simulate the result
     fit = simulate(C)

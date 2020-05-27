@@ -23,6 +23,8 @@ L = 1
 mu_c = 0.1
 mu_p = 0.01
 g = 9.8                     # The gravity constant for the system
+theta_scale = 80            # Scale for theta
+x_scale = 8                 # Scale for theta
 force_limit = 80            # Limit of the force
 theta_limit = math.pi/3     # Limit of the theta
 stable_theta = math.pi / 36 # definition of stable theta, set to 5 degree
@@ -33,14 +35,14 @@ pos_init = np.array([0.00001, 0.0, 0.0])
 fitness_max = 2.05          # Maximum fitness value for the lgorithm to terminate
 end_thres = 1e-5            # Terminate threshold for the abc to terminate
 end_sample = 30             # How many run we samples to judge the termination for algorithm
-max_iter = 1000             # Maximum iteration for abc
+max_iter = 5000             # Maximum iteration for abc
 window = int(20 / PERIOD_T)      # Sample window for the theta
 
 
 ####################################################
 #                      PSO/ABC                     #
 ####################################################
-p_range = [-10, 10]             # Range of partition
+p_range = [-20, 20]             # Range of partition
 gen = 50                        # Generation of one run in PSO
 num = 50                        # Generation of one run in PSO
 
