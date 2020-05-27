@@ -73,7 +73,7 @@ class PSO():
             # Update particle position and velocity
             r1 = np.random.uniform(size=(self.num, self.dim))
             r2 = np.random.uniform(size=(self.num, self.dim))
-            self.V = self.V*random.uniform(0.2,0.6) + 2*r1*(self.pbest-self.X) + 2*r2*(self.gbest-self.X)
+            self.V = self.V*random.uniform(0.2,0.3) + 2*r1*(self.pbest-self.X) + 2*r2*(self.gbest-self.X)
             tmp_X = self.X + self.V
             tmp_X = np.where(tmp_X > self.u_bound, self.u_bound, tmp_X)
             tmp_X = np.where(tmp_X < self.l_bound, self.l_bound, tmp_X)
@@ -81,7 +81,7 @@ class PSO():
             # Check if exist converged particle
             for part in range(self.num):
                 dist = np.linalg.norm(tmp_X[part]-self.X[part])
-                if dist == 0:
+                if dist <= 1:
                     self.remain[part] += 1
                     if self.remain[part] > self.remain_threshold:
                         tmp_X[part] = np.random.uniform(low=self.l_bound, high=self.u_bound, size=(self.dim))
