@@ -1,6 +1,7 @@
 import pendulum                         # Control plant to optimize
 import pso_v2 as pso                    # Optimizer algorithm
 import pso_const as const               # Constant definition
+import math
 from matplotlib import pyplot as plt    # Data visualization
 import numpy as np
 
@@ -33,7 +34,7 @@ def pid_sim(pid_param, plot_en=False):
     # Create PID variable
     e_x = d_x = i_x = 0 # Position error term
     prev_ex = 0         # Previous position error
-    i_x_bound = 5       # Prevent intergral overshoot
+    i_x_bound = 10       # Prevent intergral overshoot
     e_t = d_t = i_t = 0 # Angle error term
     prev_et = 0         # Previous angle error
     i_t_bound = 3       # Prevent intergral overshoot
@@ -76,9 +77,8 @@ def pid_sim(pid_param, plot_en=False):
             elif i_t < -1 * i_t_bound:
                 i_t = -1 * i_t_bound
 
-            # Position positive -> force negative, Angle positive -> force positive
-            pid_output = -1*(pid_param[0] * e_x + 0.1*pid_param[1] * i_x + pid_param[2] * d_x) +\
-                            (pid_param[3] * e_t + 0.1*pid_param[4] * i_t + pid_param[5] * d_t)
+            pid_output = -1*(pid_param[0] * e_x + 0.01*pid_param[1] * i_x + pid_param[2] * d_x) +\
+                            (pid_param[3] * e_t + 0.01*pid_param[4] * i_t + pid_param[5] * d_t)
 
             if pid_output > pid_outmax:
                 pid_output = pid_outmax
@@ -171,8 +171,8 @@ if __name__ == "__main__":
     pid_param = algo.gbest.copy()
 
     # Simulate the result
-    # pid_param = [0, 0., 0,
-    #               20, 0.0, 0]
+    # pid_param = [0, 0., 0.00,
+    #               0, 0.0,0]
     fit_value = simulate(pid_param)
     # plt.plot(algo.best_results)
     # plt.show()

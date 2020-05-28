@@ -3,6 +3,7 @@ import const
 import numpy as np
 import abc_py
 import pso_e
+#import pso_v2 as pso_e                    # Optimizer algorithm
 from matplotlib import pyplot as plt
 #############################
 #           GLOBAL          #
@@ -154,11 +155,18 @@ def fuzzy_sim(c, plot_en=False):
     fit = fitness(avg_theta, avg_x_e, t)
 
     if plot_en:
-        plt.plot(record_theta)
+        fig, axs = plt.subplots(3, 1, constrained_layout=True)
+        axs[0].plot(record_x, '--', desire_x, '-')
+        axs[0].set_title('x')
+        axs[1].plot(record_theta, '--')
+        axs[1].set_title('theta')
         plt.show()
-        plt.plot(record_x)
-        plt.plot(desire_x)
-        plt.show()
+
+        # plt.plot(record_theta)
+        # plt.show()
+        # plt.plot(record_x)
+        # plt.plot(desire_x)
+        # plt.show()
 
     return fit
 
