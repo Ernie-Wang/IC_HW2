@@ -125,6 +125,8 @@ class ABC():
         
         self.best_results[ite_idx] = self.best
 
+        self.func(self.bestx)
+
 
     def abc_iterator(self):
         # Iteration

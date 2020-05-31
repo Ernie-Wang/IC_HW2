@@ -1,0 +1,95 @@
+Last login: Wed May 27 14:28:52 on ttys002
+ cd 'undefined'; env 'DEBUGPY_LAUNCHER_PORT=61956' '/usr/local/bin/python3' '/Users/wangchangwen/.vscode/extensions/ms-python.python-2020.3.71659/pythonFiles/lib/python/debugpy/no_wheels/debugpy/launcher' '/Users/wangchangwen/Git/IC_HW2/main.py'
+
+The default interactive shell is now zsh.
+To update your account to use zsh, please run `chsh -s /bin/zsh`.
+For more details, please visit https://support.apple.com/kb/HT208050.
+wangchangwen@wangchaeMBP5022:~
+$  cd 'undefined'; env 'DEBUGPY_LAUNCHER_PORT=61956' '/usr/local/bin/python3' '/Users/wangchangwen/.vscode/extensions/ms-python.python-2020.3.71659/pythonFiles/lib/python/debugpy/no_wheels/debugpy/launcher' '/Users/wangchangwen/Git/IC_HW2/main.py'
+-bash: cd: undefined: No such file or directory
+wangchangwen@wangchaeMBP5022:~
+$  cd 'undefined'; env 'DEBUGPY_LAUNCHER_PORT=62048' '/usr/local/bin/python3' '/Users/wangchangwen/.vscode/extensions/ms-python.python-2020.3.71659/pythonFiles/lib/python/debugpy/no_wheels/debugpy/launcher' '/Users/wangchangwen/Git/IC_HW2/main.py'
+-bash: cd: undefined: No such file or directory
+Iteration: 1, best is  3.259, best C = [0. 0. 0. 0. 0. 0.]
+wangchangwen@wangchaeMBP5022:~
+$  cd 'undefined'; env 'DEBUGPY_LAUNCHER_PORT=63736' '/usr/local/bin/python3' '/Users/wangchangwen/.vscode/extensions/ms-python.python-2020.3.71659/pythonFiles/lib/python/debugpy/no_wheels/debugpy/launcher' '/Users/wangchangwen/Git/IC_HW2/main.py'
+-bash: cd: undefined: No such file or directory
+Iteration: 1, best is 85.987, best C = [0. 0. 0. 0. 0. 0.]
+Iteration: 2, best is  2.663, best C = [20.         20.         18.16861045 13.74997827  1.2147502   0.51974775]
+Iteration: 3, best is  2.663, best C = [20.         20.         18.16861045 13.74997827  1.2147502   0.51974775]
+Iteration: 4, best is  2.378, best C = [-16.46054864  -7.17286714 -13.91366035  -7.85773928 -20.
+  15.72763563]
+Iteration: 5, best is  1.668, best C = [11.04050786  2.92777904 10.14941165  9.66508525 13.95593034 -5.41990469]
+Iteration: 6, best is  1.668, best C = [11.04050786  2.92777904 10.14941165  9.66508525 13.95593034 -5.41990469]
+Iteration: 7, best is  1.668, best C = [11.04050786  2.92777904 10.14941165  9.66508525 13.95593034 -5.41990469]
+Iteration: 8, best is  1.668, best C = [11.04050786  2.92777904 10.14941165  9.66508525 13.95593034 -5.41990469]
+Iteration: 9, best is  1.668, best C = [11.04050786  2.92777904 10.14941165  9.66508525 13.95593034 -5.41990469]
+Iteration: 10, best is  1.668, best C = [11.04050786  2.92777904 10.14941165  9.66508525 13.95593034 -5.41990469]
+Iteration: 11, best is  1.668, best C = [11.04050786  2.92777904 10.14941165  9.66508525 13.95593034 -5.41990469]
+Iteration: 12, best is  1.668, best C = [11.04050786  2.92777904 10.14941165  9.66508525 13.95593034 -5.41990469]
+Iteration: 13, best is  1.668, best C = [11.04050786  2.92777904 10.14941165  9.66508525 13.95593034 -5.41990469]
+Iteration: 14, best is  1.668, best C = [11.04050786  2.92777904 10.14941165  9.66508525 13.95593034 -5.41990469]
+ w19980302
+Iteration: 15, best is  1.469, best C = [ 20.           0.59064449  19.87392205 -10.9293114    2.98910972
+  -0.96456907]
+Iteration: 16, best is  1.469, best C = [ 20.           0.59064449  19.87392205 -10.9293114    2.98910972
+  -0.96456907]
+Iteration: 17, best is  1.469, best C = [ 20.           0.59064449  19.87392205 -10.9293114    2.98910972
+  -0.96456907]
+Iteration: 18, best is  1.469, best C = [ 20.           0.59064449  19.87392205 -10.9293114    2.98910972
+  -0.96456907]
+Iteration: 19, best is  1.469, best C = [ 20.           0.59064449  19.87392205 -10.9293114    2.98910972
+  -0.96456907]
+Iteration: 20, best is  1.469, best C = [ 20.           0.59064449  19.87392205 -10.9293114    2.98910972
+  -0.96456907]
+Iteration: 21, best is  1.469, best C = [ 20.           0.59064449  19.87392205 -10.9293114    2.98910972
+  -0.96456907]
+Iteration: 22, best is  1.469, best C = [ 20.           0.59064449  19.87392205 -10.9293114    2.98910972
+  -0.96456907]
+Iteration: 23, best is  1.469, best C = [ 20.           0.59064449  19.87392205 -10.9293114    2.98910972
+  -0.96456907]
+Iteration: 24, best is  1.469, best C = [ 20.           0.59064449  19.87392205 -10.9293114    2.98910972
+  -0.96456907]
+Iteration: 25, best is  1.469, best C = [ 20.           0.59064449  19.87392205 -10.9293114    2.98910972
+  -0.96456907]
+Iteration: 26, best is  1.469, best C = [ 20.           0.59064449  19.87392205 -10.9293114    2.98910972
+  -0.96456907]
+Iteration: 27, best is  1.469, best C = [ 20.           0.59064449  19.87392205 -10.9293114    2.98910972
+  -0.96456907]
+Iteration: 28, best is  1.469, best C = [ 20.           0.59064449  19.87392205 -10.9293114    2.98910972
+  -0.96456907]
+Iteration: 29, best is  1.469, best C = [ 20.           0.59064449  19.87392205 -10.9293114    2.98910972
+  -0.96456907]
+Iteration: 30, best is  1.469, best C = [ 20.           0.59064449  19.87392205 -10.9293114    2.98910972
+  -0.96456907]
+Iteration: 31, best is  1.469, best C = [ 20.           0.59064449  19.87392205 -10.9293114    2.98910972
+  -0.96456907]
+-Iteration: 32, best is  1.469, best C = [ 20.           0.59064449  19.87392205 -10.9293114    2.98910972
+  -0.96456907]
+Iteration: 33, best is  1.469, best C = [ 20.           0.59064449  19.87392205 -10.9293114    2.98910972
+  -0.96456907]
+Iteration: 34, best is  1.469, best C = [ 20.           0.59064449  19.87392205 -10.9293114    2.98910972
+  -0.96456907]
+Iteration: 35, best is  1.469, best C = [ 20.           0.59064449  19.87392205 -10.9293114    2.98910972
+  -0.96456907]
+Iteration: 36, best is  1.469, best C = [ 20.           0.59064449  19.87392205 -10.9293114    2.98910972
+  -0.96456907]
+Iteration: 37, best is  1.469, best C = [ 20.           0.59064449  19.87392205 -10.9293114    2.98910972
+  -0.96456907]
+Iteration: 38, best is  1.469, best C = [ 20.           0.59064449  19.87392205 -10.9293114    2.98910972
+  -0.96456907]
+Iteration: 39, best is  1.469, best C = [ 20.           0.59064449  19.87392205 -10.9293114    2.98910972
+  -0.96456907]
+Iteration: 40, best is  1.469, best C = [ 20.           0.59064449  19.87392205 -10.9293114    2.98910972
+  -0.96456907]
+Iteration: 41, best is  1.469, best C = [ 20.           0.59064449  19.87392205 -10.9293114    2.98910972
+  -0.96456907]
+Iteration: 42, best is  1.469, best C = [ 20.           0.59064449  19.87392205 -10.9293114    2.98910972
+  -0.96456907]
+Iteration: 43, best is  1.469, best C = [ 20.           0.59064449  19.87392205 -10.9293114    2.98910972
+  -0.96456907]
+wangchangwen@wangchaeMBP5022:~
+$  w19980302
+-bash: w19980302: command not found
+wangchangwen@wangchaeMBP5022:~
+$ -

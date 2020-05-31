@@ -1,0 +1,59 @@
+Last login: Wed May 27 11:45:45 on ttys002
+ cd 'undefined'; env 'DEBUGPY_LAUNCHER_PORT=56168' '/usr/local/bin/python3' '/Users/wangchangwen/.vscode/extensions/ms-python.python-2020.3.71659/pythonFiles/lib/python/debugpy/no_wheels/debugpy/launcher' '/Users/wangchangwen/Git/IC_HW2/main.py'
+
+The default interactive shell is now zsh.
+To update your account to use zsh, please run `chsh -s /bin/zsh`.
+For more details, please visit https://support.apple.com/kb/HT208050.
+wangchangwen@wangchangwende-MacBook-Pro-5022:~
+$  cd 'undefined'; env 'DEBUGPY_LAUNCHER_PORT=56168' '/usr/local/bin/python3' '/Users/wangchangwen/.vscode/extensions/ms-python.python-2020.3.71659/pythonFiles/lib/python/debugpy/no_wheels/debugpy/launcher' '/Users/wangchangwen/Git/IC_HW2/main.py'
+-bash: cd: undefined: No such file or directory
+Iteration: 1, best is 109.370, best C = [  5.1544404   16.02661487  14.81847298 -15.60706028   0.88902797
+  -5.16632544]
+Iteration: 2, best is 38.563, best C = [ 5.36862836 20.         10.59116839 15.78487428 14.34393219 -8.19259435]
+Iteration: 3, best is 37.943, best C = [20.         20.         20.         -5.42709021 10.82847569 -9.5267622 ]
+Iteration: 4, best is 31.358, best C = [ 20.          14.25238692  20.         -11.77808666  12.18370552
+ -20.        ]
+Iteration: 5, best is 30.247, best C = [ 20.          14.32470634  20.           9.39229008  14.25056981
+ -17.26338425]
+Iteration: 6, best is 28.777, best C = [ 20.          12.6688973   20.          19.75990806  12.95239866
+ -19.44346008]
+Iteration: 7, best is 28.777, best C = [ 20.          12.6688973   20.          19.75990806  12.95239866
+ -19.44346008]
+Iteration: 8, best is 28.704, best C = [ 20.          12.78118944  20.          20.          13.16728449
+ -20.        ]
+Iteration: 9, best is 28.603, best C = [ 20.          13.08706358  20.          20.          11.50738475
+ -20.        ]
+Iteration: 10, best is 28.603, best C = [ 20.          13.08706358  20.          20.          11.50738475
+ -20.        ]
+Iteration: 11, best is 28.603, best C = [ 20.          13.08706358  20.          20.          11.50738475
+ -20.        ]
+Iteration: 12, best is 28.578, best C = [ 20.          13.08960093  20.          20.           9.69530597
+ -20.        ]
+Iteration: 13, best is 28.578, best C = [ 20.          13.08960093  20.          20.           9.69530597
+ -20.        ]
+Iteration: 14, best is 28.578, best C = [ 20.          13.08960093  20.          20.           9.69530597
+ -20.        ]
+Iteration: 15, best is 28.578, best C = [ 20.          13.08960093  20.          20.           9.69530597
+ -20.        ]
+Iteration: 16, best is 28.578, best C = [ 20.          13.08960093  20.          20.           9.69530597
+ -20.        ]
+Iteration: 17, best is 28.570, best C = [ 20.          13.13092932  20.          20.          10.23823604
+ -19.99687841]
+Iteration: 18, best is 28.570, best C = [ 20.          13.13092932  20.          20.          10.23823604
+ -19.99687841]
+Iteration: 19, best is 28.570, best C = [ 20.          13.13092932  20.          20.          10.23823604
+ -19.99687841]
+Iteration: 20, best is 28.564, best C = [ 20.          12.83280391  20.          20.           7.95453088
+ -19.9976326 ]
+Iteration: 21, best is 28.564, best C = [ 20.          12.83280391  20.          20.           7.95453088
+ -19.9976326 ]
+Iteration: 22, best is 28.537, best C = [ 20.          13.18425371  20.          20.           6.80606047
+ -19.99900963]
+Iteration: 23, best is 28.537, best C = [ 20.          13.18425371  20.          20.           6.80606047
+ -19.99900963]
+Iteration: 24, best is 28.402, best C = [ 20.          13.28298998  20.          20.           4.62017753
+ -20.        ]
+Iteration: 25, best is 28.402, best C = [ 20.          13.28298998  20.          20.           4.62017753
+ -20.        ]
+wangchangwen@wangchangwende-MacBook-Pro-5022:~
+$ 

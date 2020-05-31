@@ -178,50 +178,61 @@ def signal_sqrt(t):
         triger = not triger
     
     if triger:
-        return 0.5
-    return 0
+        return -0.5
+    return 0.5
 
 '''
 Set constant position
 '''
 def signal_const(t):
-    return -10
+    return -4
 if __name__ == "__main__":
+    # fit_val = [2.534, 2.473, 2.353, 2.350, 1.722, 1.567, 1.567, 1.567, 1.567, 1.567, 1.567, 1.564, 1.218, 1.218, 1.218, 1.218, 1.218, 1.218, 1.218, 1.218, 1.218, 1.218, 1.218, 1.218, 1.218, 1.218, 1.218, 1.218, 1.218, 1.164, 1.164, 1.164, 1.164, 1.164, 1.164, 1.164, 1.164, 1.164, 1.164, 1.164, 1.164, 1.164, 1.164, 1.145, 1.145, 1.145, 1.145, 1.145, 1.145, 1.145, 1.145, 1.145, 1.145, 1.145, 1.145, 1.145, 1.145, 1.145, 1.145, 1.145, 1.145, 1.145, 1.145, 1.145, 1.145, 1.145, 1.145, 1.145, 1.145, 1.145, 1.145, 1.145]
+    # plt.plot(fit_val)
+    # plt.show()
+
     # Create inverted pendulum system, signal set to origin point
     # sys = pendulum.pendulum(M=const.M, m=const.m, L=const.L, mu_c=const.mu_c, mu_p=const.mu_p)
     # Create inverted pendulum system, signal set to constant desire position
-    sys = pendulum.pendulum(M=const.M, m=const.m, L=const.L, mu_c=const.mu_c, mu_p=const.mu_p,signal=signal_const)
+    # sys = pendulum.pendulum(M=const.M, m=const.m, L=const.L, mu_c=const.mu_c, mu_p=const.mu_p,signal=signal_const)
     # Create inverted pendulum system, signal set square function
-    # sys = pendulum.pendulum(M=const.M, m=const.m, L=const.L, mu_c=const.mu_c, mu_p=const.mu_p,signal=signal_sqrt)
+    sys = pendulum.pendulum(M=const.M, m=const.m, L=const.L, mu_c=const.mu_c, mu_p=const.mu_p,signal=signal_sqrt)
 
     sys.initial(const.theta_init, const.pos_init)
+    fit = simulate([11.88827976, 1.97008765, 14.13742648, 15.72209416, 1.38708104, 0.12893926])
+    # fit = simulate([18.20469496, 3.48465183, 19.52823557, 16.12865169, 2.20584707, 0.21770131])
+    # fit = simulate([15.81450576,  8.61351052, 20, 5.57283951, 10.82197928, 0.94291021])
+    # fit = simulate([7.17572925, 1.43876826, 3.71227929, 12.28973061,  6.09185212, 0. ])
+    # fit = simulate([20, 0.59064449, 19.87392205, -10.9293114, 2.98910972, -0.96456907])
+    # fit = simulate([-20, -7.24573834, -10.19922578, -9.04387367, -5.85121376, -1.01818361])
     # fit = simulate([-20, -4.78356515, -13.40874888, -14.60246557,  -3.77657673, -0.40075034])
     # fit = simulate([-20, 0.6258438, -4.17670546, -20, -6.81712365, 2.46124704])
 
-    # # Initial ABC algorithm
-    # algo = abc_py.ABC (dim=dim, num=const.num, max_iter=const.max_iter, u_bound=const.p_range[1], l_bound=const.p_range[0], func=fuzzy_sim, end_thres=const.end_thres, end_sample=const.end_sample, fit_max=const.fitness_max)
-
-    # # Initial particles
-    # algo.abc_init()
-
-    # # Run iteration
-    # algo.abc_iterator()
-
-    # # Extract best solution
-    # C = algo.bestx.copy()
-
-
-    # Initial PSO algorithm
-    algo = pso_e.PSO (dim=dim, num=const.num, max_iter=const.max_iter, u_bound=const.p_range[1], l_bound=const.p_range[0], func=fuzzy_sim, end_thres=const.end_thres, end_sample=const.end_sample, fit_max=const.fitness_max)
+    # Initial ABC algorithm
+    algo = abc_py.ABC (dim=dim, num=const.num, max_iter=const.max_iter, u_bound=const.p_range[1], l_bound=const.p_range[0], func=fuzzy_sim, end_thres=const.end_thres, end_sample=const.end_sample, fit_max=const.fitness_max)
 
     # Initial particles
-    algo.pso_init()
+    algo.abc_init()
 
     # Run iteration
-    algo.pso_iterator()
+    algo.abc_iterator()
 
     # Extract best solution
-    C = algo.gbest.copy()
+    C = algo.bestx.copy()
+
+
+    # # Initial PSO algorithm
+    # algo = pso_e.PSO (dim=dim, num=const.num, max_iter=const.max_iter, u_bound=const.p_range[1], l_bound=const.p_range[0], func=fuzzy_sim, end_thres=const.end_thres, end_sample=const.end_sample, fit_max=const.fitness_max)
+
+    # # Initial particles
+    # algo.pso_init()
+
+    # # Run iteration
+    # algo.pso_iterator()
+
+    # # Extract best solution
+    # C = algo.gbest.copy()
+
 
     # Simulate the result
     fit = simulate(C)

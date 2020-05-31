@@ -1,0 +1,82 @@
+Last login: Thu May 28 17:11:14 on ttys002
+ cd 'undefined'; env 'DEBUGPY_LAUNCHER_PORT=64729' '/usr/local/bin/python3' '/Users/wangchangwen/.vscode/extensions/ms-python.python-2020.3.71659/pythonFiles/lib/python/debugpy/no_wheels/debugpy/launcher' '/Users/wangchangwen/Git/IC_HW2/main.py'
+
+The default interactive shell is now zsh.
+To update your account to use zsh, please run `chsh -s /bin/zsh`.
+For more details, please visit https://support.apple.com/kb/HT208050.
+wangchangwen@wangchangwende-MacBook-Pro-5022:~
+$  cd 'undefined'; env 'DEBUGPY_LAUNCHER_PORT=64729' '/usr/local/bin/python3' '/Users/wangchangwen/.vscode/extensions/ms-python.python-2020.3.71659/pythonFiles/lib/python/debugpy/no_wheels/debugpy/launcher' '/Users/wangchangwen/Git/IC_HW2/main.py'
+-bash: cd: undefined: No such file or directory
+wangchangwen@wangchangwende-MacBook-Pro-5022:~
+$  cd 'undefined'; env 'DEBUGPY_LAUNCHER_PORT=64791' '/usr/local/bin/python3' '/Users/wangchangwen/.vscode/extensions/ms-python.python-2020.3.71659/pythonFiles/lib/python/debugpy/no_wheels/debugpy/launcher' '/Users/wangchangwen/Git/IC_HW2/main.py'
+-bash: cd: undefined: No such file or directory
+/Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/site-packages/numpy/lib/function_base.py:390: RuntimeWarning: Mean of empty slice.
+  avg = a.mean(axis)
+/Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/site-packages/numpy/core/_methods.py:161: RuntimeWarning: invalid value encountered in double_scalars
+  ret = ret.dtype.type(ret / rcount)
+Iteration: 1, best is    nan, best C = [0. 0. 0. 0. 0. 0.]
+wangchangwen@wangchangwende-MacBook-Pro-5022:~
+$  cd 'undefined'; env 'DEBUGPY_LAUNCHER_PORT=64888' '/usr/local/bin/python3' '/Users/wangchangwen/.vscode/extensions/ms-python.python-2020.3.71659/pythonFiles/lib/python/debugpy/no_wheels/debugpy/launcher' '/Users/wangchangwen/Git/IC_HW2/abc_py.py'
+-bash: cd: undefined: No such file or directory
+wangchangwen@wangchangwende-MacBook-Pro-5022:~
+$  cd 'undefined'; env 'DEBUGPY_LAUNCHER_PORT=64918' '/usr/local/bin/python3' '/Users/wangchangwen/.vscode/extensions/ms-python.python-2020.3.71659/pythonFiles/lib/python/debugpy/no_wheels/debugpy/launcher' '/Users/wangchangwen/Git/IC_HW2/main.py'
+-bash: cd: undefined: No such file or directory
+/Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/site-packages/numpy/lib/function_base.py:390: RuntimeWarning: Mean of empty slice.
+  avg = a.mean(axis)
+/Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/site-packages/numpy/core/_methods.py:161: RuntimeWarning: invalid value encountered in double_scalars
+  ret = ret.dtype.type(ret / rcount)
+Iteration: 1, best is    nan, best C = [0. 0. 0. 0. 0. 0.]
+wangchangwen@wangchangwende-MacBook-Pro-5022:~
+$  cd 'undefined'; env 'DEBUGPY_LAUNCHER_PORT=65066' '/usr/local/bin/python3' '/Users/wangchangwen/.vscode/extensions/ms-python.python-2020.3.71659/pythonFiles/lib/python/debugpy/no_wheels/debugpy/launcher' '/Users/wangchangwen/Git/IC_HW2/main.py'
+-bash: cd: undefined: No such file or directory
+/Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/site-packages/numpy/lib/function_base.py:390: RuntimeWarning: Mean of empty slice.
+  avg = a.mean(axis)
+/Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/site-packages/numpy/core/_methods.py:161: RuntimeWarning: invalid value encountered in double_scalars
+  ret = ret.dtype.type(ret / rcount)
+Iteration: 1, best is    nan, best C = [0. 0. 0. 0. 0. 0.]
+wangchangwen@wangchangwende-MacBook-Pro-5022:~
+$  cd 'undefined'; env 'DEBUGPY_LAUNCHER_PORT=65361' '/usr/local/bin/python3' '/Users/wangchangwen/.vscode/extensions/ms-python.python-2020.3.71659/pythonFiles/lib/python/debugpy/no_wheels/debugpy/launcher' '/Users/wangchangwen/Git/IC_HW2/main.py'
+-bash: cd: undefined: No such file or directory
+/Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/site-packages/numpy/lib/function_base.py:390: RuntimeWarning: Mean of empty slice.
+  avg = a.mean(axis)
+/Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/site-packages/numpy/core/_methods.py:161: RuntimeWarning: invalid value encountered in double_scalars
+  ret = ret.dtype.type(ret / rcount)
+Iteration: 1, best is    nan, best C = [0. 0. 0. 0. 0. 0.]
+wangchangwen@wangchangwende-MacBook-Pro-5022:~
+$  cd 'undefined'; env 'DEBUGPY_LAUNCHER_PORT=49197' '/usr/local/bin/python3' '/Users/wangchangwen/.vscode/extensions/ms-python.python-2020.3.71659/pythonFiles/lib/python/debugpy/no_wheels/debugpy/launcher' '/Users/wangchangwen/Git/IC_HW2/main.py'
+-bash: cd: undefined: No such file or directory
+wangchangwen@wangchangwende-MacBook-Pro-5022:~
+$  cd 'undefined'; env 'DEBUGPY_LAUNCHER_PORT=49334' '/usr/local/bin/python3' '/Users/wangchangwen/.vscode/extensions/ms-python.python-2020.3.71659/pythonFiles/lib/python/debugpy/no_wheels/debugpy/launcher' '/Users/wangchangwen/Git/IC_HW2/main.py'
+-bash: cd: undefined: No such file or directory
+Iteration: 1, best is  2.534, best C = [0. 0. 0. 0. 0. 0.]
+Iteration: 2, best is  2.473, best C = [ 9.7423907   2.67979442 10.77719808  1.81537173 19.93249729  0.74405096]
+Iteration: 3, best is  2.353, best C = [ 9.77195812 10.01765149  9.57281853  0.          9.71524233  0.72790531]
+Iteration: 4, best is  2.350, best C = [15.53678518 10.95979075 18.08931434  0.         15.70479207  0.75171207]
+Iteration: 5, best is  1.722, best C = [19.95960828  5.1621432  20.         20.         20.          0.        ]
+Iteration: 6, best is  1.567, best C = [12.28537984  9.25339231  7.77953926 12.05022399 19.16551241  0.77594689]
+Iteration: 7, best is  1.567, best C = [12.28537984  9.25339231  7.77953926 12.05022399 19.16551241  0.77594689]
+Iteration: 8, best is  1.567, best C = [12.28537984  9.25339231  7.77953926 12.05022399 19.16551241  0.77594689]
+Iteration: 9, best is  1.567, best C = [12.28537984  9.25339231  7.77953926 12.05022399 19.16551241  0.77594689]
+Iteration: 10, best is  1.567, best C = [12.28537984  9.25339231  7.77953926 12.05022399 19.16551241  0.77594689]
+Iteration: 11, best is  1.567, best C = [12.28537984  9.25339231  7.77953926 12.05022399 19.16551241  0.77594689]
+Iteration: 12, best is  1.564, best C = [20.          3.58283147 20.         13.37908974 15.45552346  0.        ]
+Iteration: 13, best is  1.218, best C = [15.81450576  8.61351052 20.          5.57283951 10.82197928  0.94291021]
+Iteration: 14, best is  1.218, best C = [15.81450576  8.61351052 20.          5.57283951 10.82197928  0.94291021]
+Iteration: 15, best is  1.218, best C = [15.81450576  8.61351052 20.          5.57283951 10.82197928  0.94291021]
+Iteration: 16, best is  1.218, best C = [15.81450576  8.61351052 20.          5.57283951 10.82197928  0.94291021]
+Iteration: 17, best is  1.218, best C = [15.81450576  8.61351052 20.          5.57283951 10.82197928  0.94291021]
+Iteration: 18, best is  1.218, best C = [15.81450576  8.61351052 20.          5.57283951 10.82197928  0.94291021]
+Iteration: 19, best is  1.218, best C = [15.81450576  8.61351052 20.          5.57283951 10.82197928  0.94291021]
+Iteration: 20, best is  1.218, best C = [15.81450576  8.61351052 20.          5.57283951 10.82197928  0.94291021]
+Iteration: 21, best is  1.218, best C = [15.81450576  8.61351052 20.          5.57283951 10.82197928  0.94291021]
+Iteration: 22, best is  1.218, best C = [15.81450576  8.61351052 20.          5.57283951 10.82197928  0.94291021]
+Iteration: 23, best is  1.218, best C = [15.81450576  8.61351052 20.          5.57283951 10.82197928  0.94291021]
+Iteration: 24, best is  1.218, best C = [15.81450576  8.61351052 20.          5.57283951 10.82197928  0.94291021]
+Iteration: 25, best is  1.218, best C = [15.81450576  8.61351052 20.          5.57283951 10.82197928  0.94291021]
+Iteration: 26, best is  1.218, best C = [15.81450576  8.61351052 20.          5.57283951 10.82197928  0.94291021]
+Iteration: 27, best is  1.218, best C = [15.81450576  8.61351052 20.          5.57283951 10.82197928  0.94291021]
+Iteration: 28, best is  1.218, best C = [15.81450576  8.61351052 20.          5.57283951 10.82197928  0.94291021]
+Iteration: 29, best is  1.218, best C = [15.81450576  8.61351052 20.          5.57283951 10.82197928  0.94291021]
+Iteration: 30, best is  1.164, best C = [18.20469496  3.48465183 19.52823557 16.12865169  2.20584707  0.21770131]
+Iteration: 31, best is  1.164, best C = [18.20469496  3.48465183 19.52823557 16.12865169  2.20584707  0.21770131]
+

@@ -1,0 +1,21 @@
+Last login: Thu May 28 17:01:05 on ttys002
+ cd 'undefined'; env 'DEBUGPY_LAUNCHER_PORT=60822' '/usr/local/bin/python3' '/Users/wangchangwen/.vscode/extensions/ms-python.python-2020.3.71659/pythonFiles/lib/python/debugpy/no_wheels/debugpy/launcher' '/Users/wangchangwen/Git/IC_HW2/main.py'
+
+The default interactive shell is now zsh.
+To update your account to use zsh, please run `chsh -s /bin/zsh`.
+For more details, please visit https://support.apple.com/kb/HT208050.
+wangchangwen@wangchaeMBP5022:~
+$  cd 'undefined'; env 'DEBUGPY_LAUNCHER_PORT=60822' '/usr/local/bin/python3' '/Users/wangchangwen/.vscode/extensions/ms-python.python-2020.3.71659/pythonFiles/lib/python/debugpy/no_wheels/debugpy/launcher' '/Users/wangchangwen/Git/IC_HW2/main.py'
+-bash: cd: undefined: No such file or directory
+Iteration: 1, best is  6.250, best C = [0. 0. 0. 0. 0. 0.]
+Iteration: 2, best is  2.382, best C = [ 7.28079684  2.49742607 13.01982072 14.458538    5.0588628   0.90209052]
+Iteration: 3, best is  2.026, best C = [ 7.17572925  1.43876826  3.71227929 12.28973061  6.09185212  0.        ]
+Iteration: 4, best is  2.026, best C = [ 7.17572925  1.43876826  3.71227929 12.28973061  6.09185212  0.        ]
+Iteration: 5, best is  2.026, best C = [ 7.17572925  1.43876826  3.71227929 12.28973061  6.09185212  0.        ]
+Iteration: 6, best is  2.026, best C = [ 7.17572925  1.43876826  3.71227929 12.28973061  6.09185212  0.        ]
+
+
+
+
+
+
