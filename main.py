@@ -182,7 +182,7 @@ Define square signal input
 triger = False
 def signal_sqrt(t):
     global triger
-    if ((t+1) % (20/const.PERIOD_T)) == 0:
+    if ((t+1) % (10/const.PERIOD_T)) == 0:
         triger = not triger
     
     if triger:
