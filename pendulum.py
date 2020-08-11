@@ -42,11 +42,12 @@ class pendulum():
         self.pos = np.zeros(3)
     
     '''
-
+    Initial pendulum system
     '''
     def initial(self, theta, pos):
         self.theta = theta.copy()
         self.pos = pos.copy()
+
     '''
     How system react when given force to chat
     @param f - force given to cart
@@ -107,15 +108,13 @@ class pendulum():
         # Update position (Up+Low)*Height/2
         self.pos[Type.POS] = self.pos[Type.POS] + (original_v + self.pos[Type.VEL]) * const.PERIOD_T / 2
 
-
-
-
     '''
     Applied a force to the inverted pendulum system
     '''
     def add_force(self, f):
         self.sys_react(f)
 
+# testing code
 if __name__ == "__main__":
     sys = pendulum(M=const.M, m=const.m, L=const.L, mu_c=const.mu_c, mu_p=const.mu_p)
     sys.initial(const.theta_init, const.pos_init)

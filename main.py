@@ -1,3 +1,7 @@
+##########################################
+#  This code impliment fuzzy controller  #
+##########################################
+
 import pendulum
 import const
 import numpy as np
@@ -26,9 +30,18 @@ dim = 6
 desire_x = 0
 
 '''
-One iteration for the fuzzy loop
+Calculate fitness function
+fitness value = W_0 * abs(theta) + W_1 * (shift from x desire position) + W_2 * time
+best solution is we have stable system, which theta is at desire angle, 
+and x is at desire position, and use minimum time to became stable
 '''
 def fitness(theta, x, t):
+    """
+    @param theta - the angle between desire angle at the end
+    @param x - shiftment from x desire at the end
+    @param t - time
+    @retval fitness value
+    """
     angle = abs(theta)
     shift = abs(x)
     time = t / const.TUNE_LIMIT
@@ -56,11 +69,11 @@ def fuzzy_sim(c, plot_en=False):
     @param plot_en - plot record data or not
         #note plot is blocking, you should close the figure manually and the program will continue
     """
-    s = 0                                   # Present s value
-    last_s = 0                              # last s value, use to calculate s'
-    force = 0                               # Force last calculate
-    ad_mode = 1                             # Departure or approaching mode, Depart = 1, approach = -1
-    sys.initial(const.theta_init, const.pos_init)
+    s = 0                                           # Present s value
+    last_s = 0                                      # last s value, use to calculate s'
+    force = 0                                       # Force last calculate
+    ad_mode = 1                                     # Departure or approaching mode, Depart = 1, approach = -1
+    sys.initial(const.theta_init, const.pos_init)   # Initial pendulum system
     t = 0
     record_theta = []
     desire_theta = []
@@ -68,11 +81,9 @@ def fuzzy_sim(c, plot_en=False):
     desire_x = []
     record_x_e = []
     for t in range(const.TUNE_LIMIT):
-
-        # # Run model
-        # # print(force)
-        # sys.add_force(force)
-        # record_theta.append(sys.theta[0])
+        #############################
+        #      Calculate Force      #
+        #############################
 
         # Judge approach or departure mode
         x_d = sys.signal(t)
@@ -129,9 +140,13 @@ def fuzzy_sim(c, plot_en=False):
                 if avg_theta < const.stable_theta:
                     break
         
-        # Run model
+        #############################
+        #    Run pendulum model     #
+        #############################
         # print(force)
         sys.add_force(force)
+
+        # Record variable for further use
         record_theta.append(sys.theta[0])
         record_x.append(sys.pos[0])
         desire_x.append(x_d)
@@ -147,13 +162,16 @@ def fuzzy_sim(c, plot_en=False):
         sample_data = record_theta[:len_record].copy()
         sample_x_e = record_x_e[:len_record].copy()
 
+    # Process data being record
     sample_data = np.abs(sample_data)
     sample_x_e = np.abs(sample_x_e)
     avg_theta = np.average(sample_data)
     avg_x_e = np.average(sample_x_e)
 
+    # Calculate fitness value
     fit = fitness(avg_theta, avg_x_e, t)
 
+    # Plot the whole process when the pendulum became stable
     if plot_en:
         fig, axs = plt.subplots(3, 1, constrained_layout=True)
         axs[0].plot(record_x, '--', desire_x, '-')
@@ -162,18 +180,15 @@ def fuzzy_sim(c, plot_en=False):
         axs[1].set_title('theta')
         plt.show()
 
-        # plt.plot(record_theta)
-        # plt.show()
-        # plt.plot(record_x)
-        # plt.plot(desire_x)
-        # plt.show()
-
     return fit
 
 '''
 Simulation for the pendulum system
 '''
 def simulate(C):
+    '''
+    @param C - coefficent of sliding table
+    '''
     return fuzzy_sim(C, True)
 
 '''
@@ -195,26 +210,18 @@ Set constant position
 def signal_const(t):
     return -4
 if __name__ == "__main__":
-    # fit_val = [2.534, 2.473, 2.353, 2.350, 1.722, 1.567, 1.567, 1.567, 1.567, 1.567, 1.567, 1.564, 1.218, 1.218, 1.218, 1.218, 1.218, 1.218, 1.218, 1.218, 1.218, 1.218, 1.218, 1.218, 1.218, 1.218, 1.218, 1.218, 1.218, 1.164, 1.164, 1.164, 1.164, 1.164, 1.164, 1.164, 1.164, 1.164, 1.164, 1.164, 1.164, 1.164, 1.164, 1.145, 1.145, 1.145, 1.145, 1.145, 1.145, 1.145, 1.145, 1.145, 1.145, 1.145, 1.145, 1.145, 1.145, 1.145, 1.145, 1.145, 1.145, 1.145, 1.145, 1.145, 1.145, 1.145, 1.145, 1.145, 1.145, 1.145, 1.145, 1.145]
-    # plt.plot(fit_val)
-    # plt.show()
 
     # Create inverted pendulum system, signal set to origin point
     # sys = pendulum.pendulum(M=const.M, m=const.m, L=const.L, mu_c=const.mu_c, mu_p=const.mu_p)
+
     # Create inverted pendulum system, signal set to constant desire position
     # sys = pendulum.pendulum(M=const.M, m=const.m, L=const.L, mu_c=const.mu_c, mu_p=const.mu_p,signal=signal_const)
+
     # Create inverted pendulum system, signal set square function
     sys = pendulum.pendulum(M=const.M, m=const.m, L=const.L, mu_c=const.mu_c, mu_p=const.mu_p,signal=signal_sqrt)
 
     sys.initial(const.theta_init, const.pos_init)
-    fit = simulate([11.88827976, 1.97008765, 14.13742648, 15.72209416, 1.38708104, 0.12893926])
-    # fit = simulate([18.20469496, 3.48465183, 19.52823557, 16.12865169, 2.20584707, 0.21770131])
-    # fit = simulate([15.81450576,  8.61351052, 20, 5.57283951, 10.82197928, 0.94291021])
-    # fit = simulate([7.17572925, 1.43876826, 3.71227929, 12.28973061,  6.09185212, 0. ])
-    # fit = simulate([20, 0.59064449, 19.87392205, -10.9293114, 2.98910972, -0.96456907])
-    # fit = simulate([-20, -7.24573834, -10.19922578, -9.04387367, -5.85121376, -1.01818361])
-    # fit = simulate([-20, -4.78356515, -13.40874888, -14.60246557,  -3.77657673, -0.40075034])
-    # fit = simulate([-20, 0.6258438, -4.17670546, -20, -6.81712365, 2.46124704])
+    # fit = simulate([11.88827976, 1.97008765, 14.13742648, 15.72209416, 1.38708104, 0.12893926]) # Test results
 
     # Initial ABC algorithm
     algo = abc_py.ABC (dim=dim, num=const.num, max_iter=const.max_iter, u_bound=const.p_range[1], l_bound=const.p_range[0], func=fuzzy_sim, end_thres=const.end_thres, end_sample=const.end_sample, fit_max=const.fitness_max)
@@ -246,4 +253,3 @@ if __name__ == "__main__":
     fit = simulate(C)
     plt.plot(algo.best_results)
     plt.show()
-    i = 0
